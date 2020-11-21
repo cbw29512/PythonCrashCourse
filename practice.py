@@ -1,4 +1,7 @@
 # %%
+import random
+from random import randint
+from collections import OrderedDict
 import this
 name = "chris wilson"
 uppercase_name = name.upper()
@@ -1227,12 +1230,16 @@ print(user_profile)
 
 # %%
 """pizza.py"""
+
+
 def make_pizza(size, *toppings):
     """Summarize the pizza we are about to make."""
     print("\nMaking a " + str(size) +
           "-inch pizza with the following toppings:")
     for topping in toppings:
         print("- " + topping)
+
+
 """ 
 Make file called making_pizza.py must be in same dir as pizza.py
 
@@ -1241,16 +1248,21 @@ pizza.make_pizza(16, 'pepperoni')
 pizza.make_pizza(12, 'mushrooms', 'green peppers', 'extra cheese')
 """
 # %%
+
+
 class Dog():
     """Simple dog model"""
+
     def __init__(self, name, age):
         self.name = name
         self.age = age
+
     def sit(self):
         print(self.name.title() + " is now sitting.")
-    
+
     def roll_over(self):
         print(self.name.title() + " roll over!")
+
 
 my_dog = Dog('willie', 6)
 print("My dog's name is " + my_dog.name.title() + ".")
@@ -1259,24 +1271,28 @@ my_dog.sit()
 my_dog.roll_over()
 
 # %%
-    """Python 2.7 class"""
+"""Python 2.7 class"""
 # class Dog():
 # --snip--
 # u my_dog = Dog('willie', 6)
 # v print("My dog's name is " + my_dog.name.title() + ".")
 # w print("My dog is " + str(my_dog.age) + " years old.")
 
-#%%
+# %%
 
 # %%
+
+
 class Restaurant():
     def __init__(self, restaurant_name, cuisine_type):
         self.resaurant_name = restaurant_name
         self.cuisine_type = cuisine_type
+
     def describe_restaurant(self):
-        print(self.resaurant_name.title() 
-        + " is awesome place to eat. They make the best "
-        + self.cuisine_type.title() + "!")
+        print(self.resaurant_name.title()
+              + " is awesome place to eat. They make the best "
+              + self.cuisine_type.title() + "!")
+
 
 one_restaurant = Restaurant('chuckies', 'hamburgers')
 two_restaurant = Restaurant('churches', 'fried chicken')
@@ -1285,20 +1301,23 @@ one_restaurant.describe_restaurant()
 two_restaurant.describe_restaurant()
 three_restaurant.describe_restaurant()
 # %%
+
+
 class Car():
     """A simple attempt to represent a car."""
+
     def __init__(self, make, model, year):
         """Initialize attributes to describe a car"""
         self.make = make
         self.model = model
         self.year = year
         self.odometer_reading = 0
-    
+
     def get_descriptive_name(self):
         """Return a neatly descriptive name"""
         long_name = str(self.year) + ' ' + self.make + ' ' + self.model
         return long_name.title()
-    
+
     def read_odometer(self):
         """Print a statement showing the car's mileage"""
         print("This car has " + str(self.odometer_reading) + " miles on it.")
@@ -1320,9 +1339,10 @@ class Car():
         else:
             self.odometer_reading += miles
 
+
 my_new_car = Car('audi', 'a4', 2016)
 print(my_new_car.get_descriptive_name())
-my_new_car.odometer_reading = 23000 
+my_new_car.odometer_reading = 23000
 my_new_car.read_odometer()
 my_second_car = Car('mustang', 'ford', 2019)
 print(my_second_car.get_descriptive_name())
@@ -1339,17 +1359,19 @@ my_used_car.read_odometer()
 my_used_car.increment_odometer(100)
 my_used_car.read_odometer()
 # %%
+
+
 class Car():
     def __init__(self, make, model, year):
         self.make = make
         self.model = model
         self.year = year
         self.odometer_reading = 0
-    
+
     def get_descriptive_name(self):
         long_name = str(self.year) + ' ' + self.make + ' ' + self.model
         return long_name.title()
-    
+
     def read_odometer(self):
         print("This car has " + str(self.odometer_reading) + " miles on it.")
 
@@ -1365,8 +1387,10 @@ class Car():
         else:
             self.odometer_reading += miles
 
+
 class ElectricCar(Car):
     """Represent aspects of a car, specific to electric vehicles."""
+
     def __init__(self, make, model, year):
         """Initialize attributes of the parent class."""
         super().__init__(make, model, year)
@@ -1375,6 +1399,7 @@ class ElectricCar(Car):
     def describe_battery(self):
         """Print a statement describing the battery size"""
         print("This car has a " + str(self.battery_size) + "-kWh battery.")
+
 
 my_tesla = ElectricCar('tesla', 'model s', 2016)
 print(my_tesla.get_descriptive_name())
@@ -1391,8 +1416,11 @@ my_tesla.describe_battery()
 #         super(ElectricCar, self).__init__(make, model, year)
 #         --snip--
 # %%
-class Car():
-    --snip--
+
+
+# class Car():
+#     --snip--
+
 
 class Battery():
     """A simple attempt to model a battery for an electric car."""
@@ -1405,8 +1433,10 @@ class Battery():
         """Print a statement describing the battery size."""
         print("This car has a " + str(self.battery_size) + "-kWh battery.")
 
+
 class ElectricCar(Car):
     """Represent aspects of a car, specific to electric vehicles."""
+
     def __init__(self, make, model, year):
         """
         Initialize attributes of the parent class.
@@ -1414,8 +1444,161 @@ class ElectricCar(Car):
         """
         super().__init__(make, model, year)
         self.battery = Battery()
+
+
 my_tesla = ElectricCar('tesla', 'model s', 2016)
 print(my_tesla.get_descriptive_name())
 my_tesla.battery.describe_battery()
+
+# %%
+
+favorite_languages = OrderedDict()
+favorite_languages['jen'] = 'python'
+favorite_languages['sarah'] = 'c'
+favorite_languages['edward'] = 'ruby'
+favorite_languages['phil'] = 'python'
+
+for name, language in favorite_languages.items():
+    print(name.title() + "'s favorite language is "
+          + language.title() + ".")
+
+# %%
+x = randint(1, 6)
+print(x)
+y = randint(1, 100)
+print(y)
+z = randint(1, 20)
+print(z)
+
+
+# %%
+x = "y"
+
+while x == "y":
+
+    # Gnenerates a random number
+    # between 1 and 6 (including
+    # both 1 and 6)
+    no = random.randint(1, 6)
+
+    if no == 1:
+        print("[-----]")
+        print("[     ]")
+        print("[  1  ]")
+        print("[     ]")
+        print("[-----]")
+    if no == 2:
+        print("[-----]")
+        print("[ 2   ]")
+        print("[     ]")
+        print("[   2 ]")
+        print("[-----]")
+    if no == 3:
+        print("[-----]")
+        print("[     ]")
+        print("[3 3 3]")
+        print("[     ]")
+        print("[-----]")
+    if no == 4:
+        print("[-----]")
+        print("[4   4]")
+        print("[     ]")
+        print("[4   4]")
+        print("[-----]")
+    if no == 5:
+        print("[-----]")
+        print("[5   5]")
+        print("[  5  ]")
+        print("[5   5]")
+        print("[-----]")
+    if no == 6:
+        print("[-----]")
+        print("[6 6 6]")
+        print("[     ]")
+        print("[6 6 6]")
+        print("[-----]")
+
+    x = input("press y to roll again and n to exit:")
+    print("\n")
+# %%
+
+question = input('Would you like to roll the dice [y/n]?\n')
+
+while question != 'n':
+    if question == 'y':
+        die1 = random.randint(1, 6)
+        die2 = random.randint(1, 6)
+        print(die1, die2)
+        question = input('Would you like to roll the dice [y/n]?\n')
+    else:
+        print('Invalid response. Please type "y" or "n".')
+        question = input('Would you like to roll the dice [y/n]?\n')
+
+print('Good-bye!')
+# %%
+# %%
+""" Open text file pi_digits.txt and strips white space """
+with open('/home/chris/Desktop/projects/morepythonpractice/pi_digits.txt') as file_object:
+    contents = file_object.read()
+    print(contents.rstrip())
+
+# %%
+# """ How to open a text files thats in a different folder"""
+# with open('text_files/filename.txt') as file_object:
+
+# %%
+""" Reading file line by line """
+filename = '/home/chris/Desktop/projects/morepythonpractice/pi_digits.txt'
+with open(filename) as file_object:
+    for line in file_object:
+        print(line.rstrip())
+
+# %%
+""" Making list of lines from a file .readlines() method """
+filename = '/home/chris/Desktop/projects/morepythonpractice/pi_digits.txt'
+with open(filename) as file_object:
+    for line in file_object.readlines():
+        print(line.rstrip())
+# %%
+""" Working with the file contents, build single string no white space """
+filename = '/home/chris/Desktop/projects/morepythonpractice/pi_digits.txt'
+with open(filename) as file_object:
+    lines = file_object.readlines()
+pi_string = ''
+for line in lines:
+    pi_string += line.strip()
+print(pi_string)
+print(len(pi_string))
+
+# %%
+""" Open one million digits of pi """
+filename = 'millionpi.txt'
+with open(filename) as file_object:
+    for line in file_object:
+        print(line.rstrip())
+# %%
+""" Slice the first 52 numbers and return length of txt"""
+filename = "millionpi.txt"
+with open(filename) as file_object:
+    lines = file_object.readlines()
+pi_string = ''
+for line in lines:
+    pi_string += line.strip()
+print(pi_string[:52] + "...")
+print(len(pi_string))
+
+# %%
+""" Is your birthday on pi"""
+filename = "millionpi.txt"
+with open(filename) as file_object:
+    lines = file_object.readlines()
+pi_string = ''
+for line in lines:
+    pi_string += line.strip()
+birthday = input("Enter your birthday, in the for of mmddyy: ")
+if birthday in pi_string:
+    print("Your birthday appears in the first million digits of pi!")
+else:
+    print("Your birthday does NOT appear in the first million digits of pi!")
 
 # %%
