@@ -1,4 +1,8 @@
 # %%
+from survey import AnonymousSurvey
+import unittest
+from name_function import get_formatted_name
+import json
 import random
 from random import randint
 from collections import OrderedDict
@@ -1601,4 +1605,340 @@ if birthday in pi_string:
 else:
     print("Your birthday does NOT appear in the first million digits of pi!")
 
+# %%
+""" use the replace() method to replace any word in a
+string with a different word """
+message = "I really love cats!"
+message.replace("cats", "dogs")
+
+# %%
+filename = 'learning_python.txt'
+with open(filename) as file_object:
+    for line in file_object:
+        print(line.strip())
+        print(len(line))
+# %%
+filename = 'learning_python.txt'
+with open(filename) as file_object:
+    lines = file_object.readlines()
+pi_string = ''
+for line in lines:
+    pi_string += line.rstrip()
+print(pi_string)
+print(len(pi_string))
+# %%
+"""To write text to a file, you need to call open() with a second argument telling
+Python that you want to write to the file."""
+filename = 'programming.txt'
+with open(filename, 'w') as file_object:
+    file_object.write("I love programming!")
+# %%
+"""newlines in your write() statements makes each string appear
+on its own line"""
+filename = 'programming.txt'
+with open(filename, 'w') as file_object:
+    file_object.write("I love programming.\n")
+    file_object.write("I love creating new games.\n")
+# %%
+filename = 'programming.txt'
+with open(filename, "a") as file_object:
+    file_object.write("I also love finding meaning in large datasets.\n")
+    file_object.write("I love creating apps that can run in a browser.\n")
+# %%
+# asuming python3.x
+# for py 2.x input should be raw_input
+# input1 = input("first input:")
+# input2 = input("second input:")
+# file = open("somefile.txt", "w")
+# file.write(input1 + "\n")
+# file.write(input2 + "\n")
+# file.close()
+
+filename = "guest.txt"
+input_firstname = input("Enter your first name: ")
+input_lastname = input("Enter your last name: ")
+file = open(filename, "w")
+file.write(input_firstname.title() + ' ' + input_lastname.title() + "\n")
+file.close()
+# %%
+""" use a while loop to create a guest book"""
+filename = "guest_book.txt"
+with open(filename, 'a') as f:
+    while True:
+        full_name = input("Enter your full name: ")
+        if full_name == "exit":
+            break
+        f.write(full_name.title() + '\n')
+        f.flush()
+        print(f"You have been added to the guest book, {full_name}")
+
+# %%
+"""
+ZeroDivisionError: division by zero
+"""
+print(5/0)
+
+# %%
+""" Using try-except Blocks"""
+try:
+    print(5/0)
+except ZeroDivisionError:
+    print("You cant divide by zero!")
+
+# %%
+"""Else Block"""
+print("Give me two numbers and I will divide them.")
+print("Enter 'q' to quit.")
+while True:
+    first_number = input("\nFirst number: ")
+    if first_number == 'q':
+        break
+    second_number = input("\nSecond number: ")
+    if second_number == 'q':
+        break
+    try:
+        answer = int(first_number) / int(second_number)
+    except ZeroDivisionError:
+        print("You can't divide by zero")
+    else:
+        print(answer)
+# %%
+"""Handling the FileNotFoundError Exception"""
+filename = 'alice.txt'
+try:
+    with open(filename) as f_obj:
+        contents = f_obj.read()
+        print(contents)
+except FileNotFoundError:
+    msg = "Sorry, the file " + filename + " does not exist."
+    print(msg)
+
+# %%
+"""count words in alice in wonderland"""
+filename = 'alice.txt'
+try:
+    with open(filename) as f_obj:
+        contents = f_obj.read()
+except FileNotFoundError:
+    msg = "Sorry, the file " + filename + " does not exist."
+    print(msg)
+else:
+    words = contents.split()
+    num_words = len(words)
+    print("The file " + filename + " has about " + str(num_words) + " words.")
+# %%
+
+
+def count_words(filename):
+    """Count the approximate words in a file."""
+    try:
+        with open(filename) as f_obj:
+            contents = f_obj.read()
+    except FileNotFoundError:
+        msg = "Sorry, the file " + filename + " does not exist."
+        print(msg)
+    else:
+        # Count approximate number of words in the file.
+        words = contents.split()
+        num_words = len(words)
+        print("The file " + filename + " has about " + str(num_words) +
+              " words.")
+
+
+filename = 'alice.txt'
+count_words(filename)
+# %%
+""" Working with Multiple Files """
+
+
+def count_words(filename):
+    """Count the approximate words in a file."""
+    try:
+        with open(filename) as f_obj:
+            contents = f_obj.read()
+    except FileNotFoundError:
+        msg = "Sorry, the file " + filename + " does not exist."
+        print(msg)
+    else:
+        # Count approximate number of words in the file.
+        words = contents.split()
+        num_words = len(words)
+        print("The file " + filename + " has about " + str(num_words) +
+              " words.")
+
+
+filenames = ['alice.txt', 'siddhartha.txt',
+             'moby_dick.txt', 'little_women.txt', 'unknown.txt']
+for filename in filenames:
+    count_words(filename)
+# %%
+"""pass statement, silently passes over stated error"""
+# def count_words(filename):
+#   """Count the approximate number of words in a file."""
+#   try:
+#       --snip--
+#   except FileNotFoundError:
+#       pass
+#   else:
+#       --snip--
+# filenames = ['alice.txt', 'siddhartha.txt', 'moby_dick.txt', 'little_women.txt']
+# for filename in filenames:
+# count_words(filename)
+
+# %%
+"""Create .json with numbers in list """
+numbers = [2, 3, 5, 7, 11, 13]
+filename = 'numbers.json'
+with open(filename, 'w') as f_obj:
+    json.dump(numbers, f_obj)
+# %%
+"""Read .json file an return list"""
+filename = 'numbers.json'
+with open(filename) as f_obj:
+    numbers = json.load(f_obj)
+print(numbers)
+# %%
+"""Store data in JSON file"""
+username = input("What is your name? ")
+filename = 'username.json'
+with open(filename, 'w') as f_obj:
+    json.dump(username, f_obj)
+    print("We'll remember you when you come back, " + username + "!")
+# %%
+"""Read data from JSON files"""
+filename = 'username.json'
+with open(filename) as f_obj:
+    username = json.load(f_obj)
+    print("Welcome back, " + username.title() + "!")
+# %%
+"""Load the username, if it has been stored previously.
+Otherwise, prompt for the username and store it."""
+
+# %%
+# Load the username, if it has been stored previously.
+# Otherwise, prompt for the username and store it.
+
+
+def greet_user():
+    """Greet the user by name"""
+    filename = 'username.json'
+    try:
+        with open(filename) as f_obj:
+            username = json.load(f_obj)
+    except FileNotFoundError:
+        username = input("What is your name? ")
+        with open(filename, 'w') as f_obj:
+            json.dump(username, f_obj)
+            print("We'll remember you when you come back, " + username + "!")
+    else:
+        print("Welcome back, " + username + "!")
+
+
+greet_user()
+# %%
+"""Refactor """
+
+
+def get_stored_username():
+    """Get stored username if avalible"""
+    filename = 'username.json'
+    try:
+        with open(filename) as f_obj:
+            username = json.load(f_obj)
+    except FileNotFoundError:
+        return None
+    else:
+        return username
+
+
+def greet_user():
+    """Greet user by name."""
+    username = get_stored_username()
+    if username:
+        print("Welcome back, " + username + "!")
+    else:
+        username = input("What's your name?")
+        filename = 'username.json'
+        with open(filename, 'w') as f_obj:
+            json.dump(username, f_obj)
+            print("We'll remeber you when you come back, " + username + "!")
+
+
+greet_user()
+
+# %%
+# TESTING FUNCTIONS
+print("Enter 'q' at any time to quit.")
+while True:
+    first = input("\nPlease give me a first name: ")
+    if first == 'q':
+        break
+    last = input("Please give me a last name: ")
+    if last == 'q':
+        break
+    formatted_name = get_formatted_name(first, last)
+    print("\tNeatly formatted name: " + formatted_name + '.')
+# %%
+# Table 11-1: Assert Methods Available from the unittest Module
+# Method Use
+# assertEqual(a, b) Verify that a == b
+# assertNotEqual(a, b) Verify that a != b
+# assertTrue(x) Verify that x is True
+# assertFalse(x) Verify that x is False
+# assertIn(item, list) Verify that item is in list
+# assertNotIn(item, list) Verify that item is not in list
+# %%
+
+
+class AnonymousSurvey():
+    # Testing a class
+    """Collect anonymous answers to a survey question."""
+
+    def __init__(self, question):
+        """Store a question, and prepare to store responses."""
+        self.question = question
+        self.responses = []
+
+    def show_question(self):
+        """Show the survey question."""
+        print(question)
+
+    def store_response(self, new_response):
+        """Store a single response to the survey."""
+        self.responses.append(new_response)
+
+    def show_results(self):
+        """Show all the responses that have been given."""
+        print("Survey results:")
+        for response in responses:
+            print('- ' + response)
+
+# %%
+
+
+class TestAnonymousSurvey(unittest.TestCase):
+    """Tests for the class AnonymousSurvey."""
+
+    def setUp(self):
+        """
+        Create a survey and a set of responses for use in all test methods.
+        """
+        question = "What language did you first learn to speak?"
+        self.my_survey = AnonymousSurvey(question)
+        self.responses = ['English', 'Spanish', 'Mandarin']
+
+    def test_store_single_response(self):
+        """Test that a single response is stored properly."""
+        self.my_survey.store_response(self.responses[0])
+        self.assertIn(self.responses[0], self.my_survey.responses)
+
+    def test_store_three_responses(self):
+        """Test that three individual responses are stored properly."""
+        for response in self.responses:
+            self.my_survey.store_response(response)
+        for response in self.responses:
+            self.assertIn(response, self.my_survey.responses)
+
+
+unittest.main()
 # %%
